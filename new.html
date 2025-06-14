@@ -11,41 +11,5 @@
 </head>
 <body>
 
-  <h1>🔥 Viral Content Idea Generator</h1>
-  <p>Enter a topic and get 3 viral video ideas instantly.</p>
-  
-  <input type="text" id="topic" placeholder="e.g. Fitness for Busy Moms" />
-  <button onclick="generateIdeas()">Generate</button>
-
-  <div class="result" id="result"></div>
-
-  <script>
-    async function generateIdeas() {
-      const topic = document.getElementById('topic').value;
-      const result = document.getElementById('result');
-      result.innerHTML = 'Thinking...';
-
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer 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',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model: "gpt-4",
-          messages: [
-            { role: "system", content: "You are a viral content strategist for social media." },
-            { role: "user", content: `Give me 3 short-form video ideas for this topic: ${topic}` }
-          ],
-          temperature: 0.9
-        })
-      });
-
-      const data = await response.json();
-      const ideas = data.choices[0].message.content;
-      result.innerHTML = `<pre>${ideas}</pre>`;
-    }
-  </script>
-
 </body>
 </html>
